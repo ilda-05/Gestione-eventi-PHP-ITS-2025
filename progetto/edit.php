@@ -1,5 +1,6 @@
 <?php
 require_once 'includes/functions.php';
+require_once 'includes/session.php';
 
 $id = $_GET['id'] ?? null;
 
@@ -7,7 +8,8 @@ $id = $_GET['id'] ?? null;
 $event = get_event_by_id($id);
 
 if (!$event) {
-    echo "Evento non trovato!";
+    set_flash_message("Evento non trovato!", 'error');
+    header('Location: index.php');
     exit;
 }
 
@@ -27,6 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     // Salva usando la funzione
     save_events($events);
+    
+    // Incrementa operazioni e imposta messaggio flash
+    increment_operations();
+    set_flash_message("Evento '{$_POST['title']}' modificato con successo!", 'success');
+    
     header('Location: index.php');
     exit;
 }

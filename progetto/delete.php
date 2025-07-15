@@ -1,9 +1,11 @@
 <?php
 require_once 'includes/functions.php';
+require_once 'includes/session.php';
 
 $id = $_GET['id'] ?? null;
 
 if ($id === null) {
+    set_flash_message("ID evento non specificato!", 'error');
     header('Location: index.php');
     exit;
 }
@@ -12,7 +14,8 @@ if ($id === null) {
 $event = get_event_by_id($id);
 
 if (!$event) {
-    echo "Evento non trovato!";
+    set_flash_message("Evento non trovato!", 'error');
+    header('Location: index.php');
     exit;
 }
 
@@ -30,6 +33,10 @@ foreach ($events as $key => $e) {
 // Riordina gli indici dell'array e salva
 $events = array_values($events);
 save_events($events);
+
+// Incrementa operazioni e imposta messaggio flash
+increment_operations();
+set_flash_message("Evento '{$event['title']}' eliminato con successo!", 'success');
 
 // Reindirizza alla home
 header('Location: index.php');

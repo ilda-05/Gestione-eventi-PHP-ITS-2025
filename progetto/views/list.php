@@ -1,6 +1,7 @@
 <?php
 // Includi header e funzioni
 require_once  __DIR__ . '/../includes/functions.php';
+require_once  __DIR__ . '/../includes/session.php';
 
 // Carica gli eventi usando la funzione
 $events = load_events();
@@ -17,14 +18,15 @@ $events = load_events();
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Gestione Eventi</h1>
-            <nav>
-                <a href="add.php">+ Aggiungi Nuovo Evento</a>
-            </nav>
-        </header>
+
+        <?php include __DIR__ . '/../includes/header.php'; ?>
+
+        <nav>
+            <a href="add.php">+ Aggiungi Nuovo Evento</a>
+        </nav>
 
         <main>
+            <?php display_flash_message(); ?>
             <?php if (empty($events)): ?>
                 <div>
                     <h3>Nessun evento presente</h3>

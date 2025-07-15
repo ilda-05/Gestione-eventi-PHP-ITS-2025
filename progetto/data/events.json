@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "title": "Corso Python",
+        "date": "2025-07-15",
+        "description": "Si fa python!"
+    },
+    {
+        "id": 2,
+        "title": "Prova",
+        "date": "2025-07-15",
+        "description": "1"
+    },
+    {
+        "id": 3,
+        "title": "1",
+        "date": "2025-07-15",
+        "description": "1"
+    },
+    {
+        "id": 4,
+        "title": "1",
+        "date": "2025-07-15",
+        "description": "d"
+    }
+]

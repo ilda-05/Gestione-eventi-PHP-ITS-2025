@@ -5,6 +5,11 @@
 $title = $title ?? '';
 $date = $date ?? '';
 $description = $description ?? '';
+
+// Include sessione per mostrare informazioni utente
+require_once __DIR__ . '/../includes/session.php';
+$username = get_username();
+$operations = get_operations_count();
 ?>
 
 
@@ -22,7 +27,10 @@ $description = $description ?? '';
 <body>
 
     <div class="container">
-    <h1><?= empty($title) && empty($date) && empty($description) ? 'Aggiungi Nuovo Evento' : 'Modifica Evento' ?></h1>
+
+        <?php include __DIR__ . '/../includes/header.php'; ?>
+    
+        <h1><?= empty($title) && empty($date) && empty($description) ? 'Aggiungi Nuovo Evento' : 'Modifica Evento' ?></h1>
 
     <form method="POST" action="">
         <label for="title">Titolo:</label>

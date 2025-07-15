@@ -1,14 +1,6 @@
 <?php
-// Includi funzioni e sessione
-// Se il form è stato inviato (POST):
-//   - carica eventi
-//   - crea nuovo evento con id, titolo, data, descrizione
-//   - salva eventi
-//   - incrementa operazioni e imposta messaggio flash
-//   - reindirizza a index
-// Altrimenti mostra il form
-
 require_once 'includes/functions.php';
+require_once 'includes/session.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 1. Ricevi i dati dal form
@@ -29,7 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $events[] = $newEvent;
     save_events($events);
 
-    // 4. Reindirizza alla home
+    // 4. Incrementa operazioni e imposta messaggio flash
+    increment_operations();
+    set_flash_message("Evento '{$title}' aggiunto con successo!", 'success');
+
+    // 5. Reindirizza alla home
     header('Location: index.php');
     exit;
 }
