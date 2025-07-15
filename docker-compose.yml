@@ -5,7 +5,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./progetto/data:/var/www/html/data
+      - ./progetto:/var/www/html
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
     restart: unless-stopped
