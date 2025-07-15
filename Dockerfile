@@ -23,6 +23,11 @@ RUN echo '#!/bin/bash' > /docker-entrypoint.sh \
     && echo 'mkdir -p /var/www/html/data' >> /docker-entrypoint.sh \
     && echo 'chmod 777 /var/www/html/data' >> /docker-entrypoint.sh \
     && echo 'chown -R www-data:www-data /var/www/html/data' >> /docker-entrypoint.sh \
+    && echo '# Fix permissions for JSON files specifically' >> /docker-entrypoint.sh \
+    && echo 'if [ -f /var/www/html/data/events.json ]; then' >> /docker-entrypoint.sh \
+    && echo '    chmod 666 /var/www/html/data/events.json' >> /docker-entrypoint.sh \
+    && echo '    chown www-data:www-data /var/www/html/data/events.json' >> /docker-entrypoint.sh \
+    && echo 'fi' >> /docker-entrypoint.sh \
     && echo 'echo "✅ Permissions fixed! Starting Apache..."' >> /docker-entrypoint.sh \
     && echo 'exec apache2-foreground' >> /docker-entrypoint.sh \
     && chmod +x /docker-entrypoint.sh

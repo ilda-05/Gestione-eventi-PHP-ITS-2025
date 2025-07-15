@@ -1,11 +1,5 @@
 [
     {
-        "id": 1,
-        "title": "Corso Python",
-        "date": "2025-07-15",
-        "description": "Si fa python!"
-    },
-    {
         "id": 2,
         "title": "Prova",
         "date": "2025-07-15",

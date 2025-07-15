@@ -24,10 +24,32 @@ function load_events() {
  */
 function save_events($events) {
     $filePath = __DIR__ . '/../data/events.json';
+    $dirPath = dirname($filePath);
+    
+    // Crea la directory se non esiste
+    if (!is_dir($dirPath)) {
+        mkdir($dirPath, 0777, true);
+    }
+    
+    // Verifica permessi directory
+    if (!is_writable($dirPath)) {
+        error_log("Directory $dirPath non scrivibile");
+        return false;
+    }
     
     $jsonContent = json_encode($events, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     
-    return file_put_contents($filePath, $jsonContent) !== false;
+    $result = file_put_contents($filePath, $jsonContent);
+    
+    if ($result === false) {
+        error_log("Impossibile scrivere il file $filePath");
+        return false;
+    }
+    
+    // Imposta permessi sul file creato
+    chmod($filePath, 0666);
+    
+    return true;
 }
 
 /**

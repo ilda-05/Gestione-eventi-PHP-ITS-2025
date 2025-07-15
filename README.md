@@ -64,6 +64,14 @@ docker-compose restart
 docker-compose up --build
 ```
 
+### Problemi di permessi (scrittura file)
+Se vedi errori tipo "Warning: file_put_contents(): Permission denied":
+```bash
+# Mentre il container è attivo:
+docker-compose exec eventi-php chmod 777 /var/www/html/data
+docker-compose exec eventi-php chmod 666 /var/www/html/data/events.json
+```
+
 **Il 99% delle volte basta solo `docker-compose up`** ✅
 
 ### Altri problemi rari
