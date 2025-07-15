@@ -14,9 +14,11 @@ Sistema di gestione eventi con PHP, sessioni e containerizzazione Docker.
 git clone https://github.com/ilda-05/Gestione-eventi-PHP-ITS-2025.git
 cd Gestione-eventi-PHP-ITS-2025
 
-# 2. Avvia con Docker
+# 2. Avvia con Docker (TUTTO AUTOMATICO)
 docker-compose up
 ```
+
+**STOP.** Basta così! L'app sarà su http://localhost:8080
 
 ### 🌐 Accesso
 - **Applicazione**: http://localhost:8080
@@ -55,9 +57,18 @@ docker-compose restart
 - ✅ Containerizzazione Docker
 
 ## 🐛 Troubleshooting
-- **Errore 403**: Ricostruisci con `docker-compose up --build`
-- **Porta occupata**: Cambia `8080:80` in `8081:80` nel docker-compose.yml
-- **Docker non risponde**: Assicurati che Docker Desktop sia in esecuzione
+
+### Se non funziona
+```bash
+# Solo se proprio non va, ricostruisci:
+docker-compose up --build
+```
+
+**Il 99% delle volte basta solo `docker-compose up`** ✅
+
+### Altri problemi rari
+- **Porta occupata**: Cambia `8080:80` in `8081:80` nel docker-compose.yml  
+- **Docker non parte**: Assicurati che Docker Desktop sia in esecuzione
 
 ## 🏗️ Struttura
 ```
