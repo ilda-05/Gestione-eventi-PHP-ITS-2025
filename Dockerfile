@@ -5,7 +5,7 @@ FROM php:8.2-apache
 RUN a2enmod rewrite
 
 # Copia i file del progetto nella directory di Apache
-COPY . /var/www/html/
+COPY ./progetto/ /var/www/html/
 
 # Imposta i permessi corretti
 RUN chown -R www-data:www-data /var/www/html/ \
