@@ -1,5 +1,15 @@
 <?php
-// Inizializza la sessione
+// I# Memorizza l'utente (da $_GET['user']) se specificato
+if (isset($_GET['user'])) {
+    $_SESSION['user'] = htmlspecialchars($_GET['user']);
+}
+
+// Imposta utente di default se non esiste
+if (!isset($_SESSION['user'])) {
+    $_SESSION['user'] = 'Alice';
+}
+
+// Inizializza il contatore delle operazioni se non esisteizza la sessione
 session_start();
 
 // Reset della sessione se richiesto
@@ -32,6 +42,8 @@ function increment_operations() {
 function get_operations_count() {
     return $_SESSION['operations_count'] ?? 0;
 }
+
+
 
 /**
  * Ottiene il nome utente dalla sessione
